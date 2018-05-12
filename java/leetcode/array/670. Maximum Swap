@@ -1,0 +1,30 @@
+class Solution {
+    public int maximumSwap(int num) {
+        
+        if(num/10==0) return num;
+        
+        char[] n=(""+num).toCharArray();
+        Integer l=n.length;
+        int[] high=new int[l]; 
+        high[l-1]=l-1;
+        for(int i=l-2;i>=0;i--){
+            if(n[high[i+1]]<n[i]){
+            high[i]=i;
+            }else
+               {
+                 high[i]=high[i+1];
+               }
+        }
+        
+        for(int i=0;i<l;i++){
+            if(n[i]<n[high[i]]){
+                char temp=n[i];
+                n[i]=n[high[i]];
+                n[high[i]]=temp;
+                break;
+            }
+        }
+       
+        return Integer.parseInt(new String(n));
+    }
+}
