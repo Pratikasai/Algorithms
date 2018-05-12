@@ -4,6 +4,7 @@ class Solution {
 			List<List<Integer>> ans = new ArrayList<>();
 			int len = nums.length;
 			for (int l = 0; l < len - 2; l++) {
+                		if(l==0|| nums[l]>nums[l-1]){
 				int m = l + 1, r = len - 1;
 				while (m < r) {
 					if (nums[l] + nums[m] + nums[r] < 0) {
@@ -17,10 +18,9 @@ class Solution {
 						arr.add(nums[r]);
 						m++;
 						r--;
-            //to check uniqueness
 						while (m < r && nums[m] == nums[m - 1])
 							m++;
-						while (m < r && nums[r] == nums[r - 1])
+						while (m < r && nums[r] == nums[r + 1])
 							r--;
 
 						ans.add(arr);
@@ -29,6 +29,7 @@ class Solution {
 				}
 
 			}
+            		}
 			return ans;
 		}
 	}
