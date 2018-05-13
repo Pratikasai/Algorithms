@@ -1,0 +1,33 @@
+class Solution {
+    public int calculateMinAgeToBeFriend(int age){
+        return age/2+7;
+    }
+    public int calculateFriendFromMinIndex(int[] ages,int pos){
+        //using binary search we will find index for min age for which friend request to be sent 
+        int head=0,mid=Integer.MAX_VALUE,tail=pos,age=calculateMinAgeToBeFriend(ages[tail]);
+        if(ages[head]>age) return (tail-head);
+        
+        while(head<tail){
+            mid=(head+tail)/2;
+            
+            if(ages[mid]>age) tail=mid;
+            else if(ages[mid]<=age) head=mid+1;
+            }
+            mid=head;
+            return (pos-mid>0)?pos-mid:0;
+        
+        }
+    public int numFriendRequests(int[] ages) {
+        int len=ages.length,ans=0;
+        Arrays.sort(ages);
+        for(int i=len-1;i>0;i--){
+             int res= calculateFriendFromMinIndex(ages,i);
+            ans+=res;
+            while(i>0 && ages[i]==ages[i-1]){
+                ans+=res;
+                i--;
+            } 
+        }
+        return ans;
+    }
+}
