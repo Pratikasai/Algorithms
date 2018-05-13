@@ -1,0 +1,9 @@
+class Solution {
+// A[i] can be placed only in 3 location to make it true i.e. i-1,i,i+1 
+    public boolean isIdealPermutation(int[] A) {
+        for(int i=0;i<A.length;i++){
+            if(Math.abs(A[i]-i)>1) return false;
+        }
+        return true;
+    }
+}
