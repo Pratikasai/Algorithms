@@ -1,0 +1,14 @@
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        for(int i=0; i<s.length(); i++)
+            if(value(i, s)!=value(i, t)) return false;
+        return true;
+    }
+    //to check if the char at i position occured for first time or which position it has been occurred already .
+    private int value(int pos, String source) {
+        char c = source.charAt(pos);
+        int index = source.indexOf(c);
+        if(index<pos) return index;
+        return pos;
+    }
+}
